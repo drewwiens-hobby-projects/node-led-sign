@@ -6,7 +6,7 @@ Drive an LED sign thru any serial port on your computer. Circuit provided for co
 ## Instructions
 1. Edit serial port name in index.js if yours is not ttyUSB0. Use COM names in Windows, e.g. COM1.
 2. Run `yarn` to install dependencies into node_modules folder.
-3. Run `yarn start` to run the script. Scrolls "HELLO WORLD!!!" across the sign.
+3. Run `yarn start` to run the script. Shows "HELLO WORLD!!!" on the sign.
 
 ## Requirements
 * Node.js
