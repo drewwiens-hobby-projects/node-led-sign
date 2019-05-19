@@ -44,15 +44,15 @@ function calcChecksum(packetStr) {
 
 const mid = char(195);
 const epid = char(255);
-const pid = char(245);
 
 /**
- * Send a message packet.
+ * Returns a message packet.
  * @param message The ASCII message. Max 12 chars sent.
  * @param chunkNum The offset for the message from 0-14. Default is 0.
  * @param reset Optional. If truthy, return packet that resets the sign.
  */
 function createMPacket(message, chunkNum = 0, reset = false) {
+  const pid = char(245);
   const signNum = char(0); // 0=broadcast
   const lineNum = char(1); // should be 1 for single line signs
   const position = reset ? char(0) : char(((chunkNum + 1) << 4) | 0x1);
@@ -64,11 +64,24 @@ function createMPacket(message, chunkNum = 0, reset = false) {
 }
 
 /**
- * Send a trigger packet.
+ * Returns a trigger packet.
  */
 function createTPacket() {
+  const pid = char(245);
   const bodyLength = char(1);
   const packet = `${mid}${epid}${pid}${bodyLength}T`;
+  const checksum = calcChecksum(packet);
+  return `${packet}${checksum}`;
+}
+
+/**
+ * Returns a packet that requests the status from the sign.
+ */
+function createStatusRequestPacket() {
+  const pid = char(128);
+  const mod = char(254);
+  const midSigns = char(189);
+  const packet = `${mid}${epid}${pid}${mod}${midSigns}`;
   const checksum = calcChecksum(packet);
   return `${packet}${checksum}`;
 }
@@ -110,8 +123,21 @@ function chunk(str, len = 12) {
     await writeAsync(pkt);
     await sleep(20); // must wait some time after a reset
 
-    await writeMessage('HELLO WORLD!!!');
+    await writeMessage('sadfdsaf');
     console.log('Packets sent');
+
+    port.on('data', data => {
+      console.log('Data:', data)
+    });
+    
+    // await sleep(2000);
+    while(true) {
+      pkt = createStatusRequestPacket();
+      // console.log('Sending GET STATUS packet');
+      await writeAsync(pkt);
+      await sleep(2000);
+    }
+
   } catch(e) {
     console.error('An error occurred:', e);
   }
