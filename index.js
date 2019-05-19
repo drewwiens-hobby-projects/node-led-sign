@@ -1,4 +1,3 @@
-const promisify = require('util').promisify;
 const SerialPort = require('serialport');
 
 const mid = char(195);
@@ -111,7 +110,7 @@ function chunk(str, len = 12) {
     await writeAsync(pkt);
     await sleep(20); // must wait some time after a reset
 
-    await writeMessage('HELLO WORLD ^_^');
+    await writeMessage('HELLO WORLD!!!');
     console.log('Packets sent');
   } catch(e) {
     console.error('An error occurred:', e);
