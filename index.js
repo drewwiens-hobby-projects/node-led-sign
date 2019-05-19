@@ -1,9 +1,5 @@
 const SerialPort = require('serialport');
 
-const mid = char(195);
-const epid = char(255);
-const pid = char(245);
-
 /** Promisified serial port. */
 const serialPortAsync = (path) => new Promise((resolve, reject) => {
   const port = new SerialPort(path, {
@@ -45,6 +41,10 @@ function calcChecksum(packetStr) {
   console.log(`Sanity check: ${sum + checksum}`)
   return char(checksum);
 }
+
+const mid = char(195);
+const epid = char(255);
+const pid = char(245);
 
 /**
  * Send a message packet.
