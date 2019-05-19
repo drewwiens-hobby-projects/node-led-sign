@@ -1,0 +1,12 @@
+{
+  "name": "led-sign",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "serialport": "7.1.5"
+  },
+  "scripts": {
+    "start": "node ."
+  }
+}
