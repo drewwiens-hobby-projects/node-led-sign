@@ -20,3 +20,13 @@
   * Most any PNP transistor and power/signal/schottky diode should work.
   * Can substitute other values for the resistors as long as they are reasonable.
 * circuitjs.txt can be imported at https://www.falstad.com/circuit/
+
+## Circuit Explanation
+
+The circuit does not meet the J1708 spec, it just sends 3.3v TTL serial to the
+sign straight on one pin (A) and inverted on the other pin (B) with some inline
+impedance. The goal was to be really simple, i.e. mostly resistors. It could
+probably be done even simpler. The 10k resistor + diode combination near the RXD
+is to protect the 3.3v pin since the sign tries to pull up pin A toward 5v. If
+you adapt the circuit for 5v TTL serial, or if you have 5v tolerant input pins,
+you don't need the 10k resistor + diode.
