@@ -1,7 +1,7 @@
 # Node.js Script and Serial to J1708 Circuit for NXTP7X962M LED Signs
 
 ## Description
-Drive an LED sign thru any serial port on your computer. Circuit provided for connecting the sign to any TTL (e.g. 5V or 3.3V) serial port, e.g. a USB to TTL serial adapter.
+Control an LED sign thru a serial port on your computer. A circuit is provided to connect the sign to a 5V or 3.3V TTL serial port, e.g. a USB to TTL serial adapter. I used a CP2102 module.
 
 ## Instructions
 1. Edit serial port name in index.js if yours is not ttyUSB0. Use COM names in Windows, e.g. COM1.
