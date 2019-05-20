@@ -123,20 +123,20 @@ function chunk(str, len = 12) {
     await writeAsync(pkt);
     await sleep(20); // must wait some time after a reset
 
-    await writeMessage('sadfdsaf');
+    await writeMessage('HELLO WORLD!!!');
     console.log('Packets sent');
 
-    port.on('data', data => {
-      console.log('Data:', data)
-    });
+    // port.on('data', data => {
+    //   console.log('Data:', data)
+    // });
     
-    // await sleep(2000);
-    while(true) {
-      pkt = createStatusRequestPacket();
-      // console.log('Sending GET STATUS packet');
-      await writeAsync(pkt);
-      await sleep(2000);
-    }
+    // // await sleep(2000);
+    // while(true) {
+    //   pkt = createStatusRequestPacket();
+    //   // console.log('Sending GET STATUS packet');
+    //   await writeAsync(pkt);
+    //   await sleep(2000);
+    // }
 
   } catch(e) {
     console.error('An error occurred:', e);
