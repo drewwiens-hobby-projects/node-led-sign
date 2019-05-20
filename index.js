@@ -95,6 +95,10 @@ function chunk(str, len = 12) {
   return str.split(new RegExp(`(.{${len}})`)).filter(x => x).filter((_itm, idx) => idx < 13);
 }
 
+const upArrow = `~G${char(0b11100000-1)}${char(0b11111000-1)}${char(0b11111110-1)}${char(0b11111111-1)}${char(0b11111110-1)}${char(0b11111000-1)}${char(0b11100000-1)}${char(0)}`;
+const downArrow = `~G${char(0b10000011-1)}${char(0b10001111-1)}${char(0b10111111-1)}${char(0b11111111-1)}${char(0b10111111-1)}${char(0b10001111-1)}${char(0b10000011-1)}${char(0)}`;
+const degreeSymbol = `~G${char(0b10000010-1)}${char(0b10000101-1)}${char(0b10000010-1)}${char(0)}`;
+
 (async () => {
   try {
     const port = await serialPortAsync('/dev/ttyUSB0');
@@ -106,6 +110,7 @@ function chunk(str, len = 12) {
     let pkt;
 
     async function writeMessage(message) {
+      console.log(`Writing message of length ${message.length}`);
       const chunks = chunk(message);
       console.log(chunks);
       for (let idx = 0; idx < chunks.length; idx++) {
@@ -123,6 +128,9 @@ function chunk(str, len = 12) {
     await writeAsync(pkt);
     await sleep(20); // must wait some time after a reset
 
+    // await writeMessage(`~CAPPL 89.84${downArrow}-0.71`); // stock ticker example 1
+    // await writeMessage(`~CAPPL 89.84${upArrow}+0.71`); // stock ticker example 2
+    // await writeMessage(`~C12:45 pm 56${degreeSymbol}F cloudy`) // clock & temperature example
     await writeMessage('HELLO WORLD!!!');
     console.log('Packets sent');
 
