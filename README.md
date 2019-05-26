@@ -4,13 +4,13 @@ Control an LED sign with Node.js thru the serial port.
 
 ## Requirements
 * Node.js
-* Yarn
-* 3.3V TTL serial port. Tested with CP2102 module.
+* Yarn or npm
+* A 3.3V TTL serial port. Tested with CP2102 module.
 
 ## Instructions
 1. Edit serial port in index.js if not ttyUSB0.
-2. Run `yarn` to install dependencies.
-3. Run `yarn start` to run. Puts "HELLO WORLD!!!" on the sign.
+2. Run `yarn` or `npm install` to install dependencies.
+3. Run `yarn start` or `npm start` to run. Puts "HELLO WORLD!!!" on the sign.
 
 ## Circuit
 * Connects a TTL 3.3v serial port to the LED sign's J1708 port, e.g.:
