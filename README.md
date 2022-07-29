@@ -13,6 +13,9 @@ Control an LED sign with Node.js thru the serial port.
 3. Run `yarn start` or `npm start` to run. Puts "HELLO WORLD!!!" on the sign.
 
 ## Circuit
+
+![Schematic](circuit.png?raw=true "Schematic")
+
 * Connects a TTL 3.3v serial port to the LED sign's J1708 port, e.g.:
   * Raspberry Pis
   * 3.3v Arduinos
